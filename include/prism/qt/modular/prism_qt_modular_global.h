@@ -1,0 +1,12 @@
+#ifndef PRISM_QT_MODULAR_GLOBAL_H
+#define PRISM_QT_MODULAR_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PRISM_QT_MODULAR_LIBRARY)
+#define PRISM_QT_MODULAR_EXPORT Q_DECL_EXPORT
+#else
+#define PRISM_QT_MODULAR_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PRISM_QT_MODULAR_GLOBAL_H
