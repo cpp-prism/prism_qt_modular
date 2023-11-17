@@ -1,8 +1,8 @@
 {
   "name": "prism-qt-modular",
-  "version": "1.0.0",
-  "port-version": 2,
-  "description": "prism qt modular interface",
+  "version": "1.0.2",
+  "port-version": 1,
+  "description": "prism qt modular interface, for OTA",
   "homepage": "https://github.com/cpp-prism/prism_qt_modular",
   "supports": "(windows & !arm & !uwp) | osx | (linux & !arm)",
   "dependencies": [
