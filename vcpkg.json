@@ -1,6 +1,6 @@
 {
   "name": "prism-qt-modular",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "port-version": 1,
   "description": "prism qt modular interface, for OTA",
   "homepage": "https://github.com/cpp-prism/prism_qt_modular",
