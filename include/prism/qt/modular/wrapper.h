@@ -23,6 +23,7 @@ public:
      */
     wrapper(std::vector<intfModule*> plugins,std::function<int()> runapp);
     int run();
+    static std::string startupUrl ;
 };
 
 } // namespace prism::qt::modular

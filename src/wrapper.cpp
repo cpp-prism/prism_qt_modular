@@ -58,5 +58,5 @@ int wrapper::run()
     return result;
 }
 
-
+std::string wrapper::startupUrl = "";
 } //prism::qt::modular
