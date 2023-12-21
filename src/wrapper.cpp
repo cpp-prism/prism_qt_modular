@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QPluginLoader>
 #include <QVariant>
+#include <iostream>
 
 namespace prism::qt::modular {
 
@@ -33,8 +34,23 @@ int wrapper::run()
         qDebug() << "execute install        : " << m->objectName();
         m->install();
     }
+    int result;
 
-    int result = m_fuc_runapp();
+    try{
+        result = m_fuc_runapp();
+    }
+    catch(std::string str)
+    {
+        std::cout << str;
+    }
+    catch(const char* msg)
+    {
+        std::cout << msg;
+    }
+    catch(std::exception& ex)
+    {
+        std::cout << ex.what();
+    }
 
     for (auto rit = m_plugins.rbegin(); rit != m_plugins.rend(); ++rit)
     {

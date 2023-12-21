@@ -23,12 +23,16 @@ set(HEADERS
     include/prism/qt/modular/prism_qt_modular_global.h
     include/prism/qt/modular/wrapper.h
     include/prism/qt/modular/interfaces/intf_module.h
+    include/prism/qt/modular/dynamic_lib_caller.h
     src/wrapper.cpp
+    src/dynamic_lib_caller.cpp
     )
 
 
 add_library(${PROJECT_NAME}  SHARED  ${HEADERS})
 add_library(prism::qt::modular  ALIAS  ${PROJECT_NAME})
+
+
 
 target_include_directories(${PROJECT_NAME} INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -38,6 +42,13 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 target_link_libraries(${PROJECT_NAME} PRIVATE
         Qt${QT_VERSION_MAJOR}::Core
 )
+if (MSVC)
+    target_link_libraries(${PROJECT_NAME} PRIVATE kernel32.lib)
+elseif (MINGW)
+    target_link_libraries(${PROJECT_NAME} PRIVATE -lkernel32)
+elseif (UNIX)
+    target_link_libraries(${PROJECT_NAME} PRIVATE dl)
+endif()
 
 target_compile_features(${PROJECT_NAME} PRIVATE  cxx_std_17)
 target_compile_definitions(${PROJECT_NAME} PRIVATE PRISM_QT_MODULAR_LIBRARY)
