@@ -11,7 +11,14 @@
 #endif
 
 #include <iostream>
+
+#ifdef __linux
+#include <experimental/filesystem>
+#define filesystem experimental::filesystem
+#else
 #include <filesystem>
+#endif
+
 
 class PRISM_QT_MODULAR_EXPORT dynamic_lib_caller
 {
