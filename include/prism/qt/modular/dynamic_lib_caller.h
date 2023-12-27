@@ -1,5 +1,5 @@
-#ifndef DANYMIC_LIB_CALLER_H
-#define DANYMIC_LIB_CALLER_H
+#ifndef PRISM_QT_MODULAR_DANYMIC_LIB_CALLER_H
+#define PRISM_QT_MODULAR_DANYMIC_LIB_CALLER_H
 #include "prism_qt_modular_global.h"
 
 #ifdef _WIN32
@@ -19,6 +19,7 @@
 #include <filesystem>
 #endif
 
+namespace prism::qt::modular {
 
 class PRISM_QT_MODULAR_EXPORT dynamic_lib_caller
 {
@@ -29,5 +30,6 @@ public:
     static void* getFunctionAddr(void *lib, const char*  funName);
     static void  unloadLib(void *lib);
 };
+}// namespace prism::qt::modular
 
-#endif // DANYMIC_LIB_CALLER_H
+#endif // PRISM_QT_MODULAR_DANYMIC_LIB_CALLER_H

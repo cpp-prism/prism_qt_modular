@@ -1,6 +1,8 @@
 #include "include/prism/qt/modular/dynamic_lib_caller.h"
 #include <sstream>
 
+namespace prism::qt::modular {
+
 dynamic_lib_caller::dynamic_lib_caller()
 {
 
@@ -67,5 +69,7 @@ void dynamic_lib_caller::unloadLib(void *lib)
         dlclose(lib);
     }
 }
+
+}// namespace prism::qt::modular
 
 #endif
