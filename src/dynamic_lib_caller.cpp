@@ -70,6 +70,7 @@ void dynamic_lib_caller::unloadLib(void *lib)
     }
 }
 
-}// namespace prism::qt::modular
 
 #endif
+
+}// namespace prism::qt::modular
