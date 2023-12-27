@@ -40,6 +40,11 @@ void dynamic_lib_caller::unloadLib(void *lib)
 void *dynamic_lib_caller::loadLib(std::string path)
 {
     void* library = dlopen(path.c_str(), RTLD_NOW);
+    if(!library)
+    {
+        const char* msg = dlerror();
+        std::cout << msg << std::endl;
+    }
     return library;
 }
 
