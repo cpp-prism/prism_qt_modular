@@ -24,8 +24,11 @@ set(HEADERS
     include/prism/qt/modular/wrapper.h
     include/prism/qt/modular/interfaces/intf_module.h
     include/prism/qt/modular/dynamic_lib_caller.h
+    include/prism/qt/modular/shm_helper.h
+
     src/wrapper.cpp
     src/dynamic_lib_caller.cpp
+    src/shm_helper.cpp
     )
 
 
@@ -39,15 +42,16 @@ target_include_directories(${PROJECT_NAME} INTERFACE
     $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
 )
 
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Core
 )
 if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE kernel32.lib)
 elseif (MINGW)
     target_link_libraries(${PROJECT_NAME} PRIVATE -lkernel32)
 elseif (UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE dl)
+    target_link_libraries(${PROJECT_NAME} PRIVATE dl rt)
 endif()
 
 target_compile_features(${PROJECT_NAME} PRIVATE  cxx_std_17)
