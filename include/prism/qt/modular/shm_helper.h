@@ -23,6 +23,7 @@ public:
 
 private:
     HANDLE handle;
+    size_t size;
 };
 }// namespace prism::qt::modular
 
