@@ -38,7 +38,7 @@ void dynamic_lib_caller::unloadLib(void *lib)
 
 #endif
 
-#ifdef __linux
+#if defined(__GNUC__) || defined(__clang__) 
 void *dynamic_lib_caller::loadLib(std::string path)
 {
     void* library = dlopen(path.c_str(), RTLD_NOW);

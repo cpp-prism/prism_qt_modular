@@ -6,7 +6,7 @@
 #include <Windows.h>
 #endif
 
-#ifdef __linux
+#if defined(__GNUC__) || defined(__clang__)
 #include <dlfcn.h>
 #endif
 
