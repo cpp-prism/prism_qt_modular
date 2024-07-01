@@ -41,7 +41,8 @@ void dynamic_lib_caller::unloadLib(void *lib)
 #if defined(__GNUC__) || defined(__clang__) 
 void *dynamic_lib_caller::loadLib(std::string path)
 {
-    void* library = dlopen(path.c_str(), RTLD_NOW);
+    //void* library = dlopen(path.c_str(),  RTLD_NOW);
+    void* library = dlopen(path.c_str(),  RTLD_LAZY|RTLD_GLOBAL);
     if(!library)
     {
         const char* msg = dlerror();
