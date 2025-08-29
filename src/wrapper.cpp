@@ -34,7 +34,7 @@ int wrapper::run()
         qDebug() << "execute install        : " << m->objectName();
         m->install();
     }
-    int result;
+    int result = -1;
 
     try{
         result = m_fuc_runapp();
