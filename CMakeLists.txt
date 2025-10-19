@@ -16,7 +16,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+find_package(prism COMPONENTS container)
 
 #
 set(HEADERS
@@ -44,7 +45,10 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
+    prism::container
     Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Quick
+
 )
 if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE kernel32.lib)

@@ -11,7 +11,7 @@ dynamic_lib_caller::dynamic_lib_caller()
 #ifdef _WIN32
 void *dynamic_lib_caller::loadLib(std::string path)
 {
-    HMODULE lib = LoadLibrary(path.c_str()) ;
+    HMODULE lib = LoadLibraryA(path.c_str()) ;
     return static_cast<void*>(lib);
 }
 

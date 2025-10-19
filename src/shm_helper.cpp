@@ -7,7 +7,7 @@ namespace prism::qt::modular {
 #ifdef _WIN32 // Windows
 shm_helper::shm_helper(const char *name, size_t size):size(size)
 {
-    handle = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, static_cast<DWORD>(size), name);
+    handle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, static_cast<DWORD>(size), name);
     if (handle == NULL) {
         std::cerr << "Failed to create shared memory" << std::endl;
     }

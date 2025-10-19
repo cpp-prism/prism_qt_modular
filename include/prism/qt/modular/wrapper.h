@@ -21,7 +21,7 @@ public:
      * @param runapp
      * 传入插件加载完后 要做的事情， 一般是app.exe();
      */
-    wrapper(std::vector<intfModule*> plugins,std::function<int()> runapp);
+    wrapper(std::vector<intfModule*> plugins,std::function<int()> runapp = nullptr);
     int run();
     static std::string startupUrl ;
 };

@@ -4,11 +4,12 @@
 
 #ifdef _WIN32
 #include <Windows.h>
-#endif
-
+#else
 #if defined(__GNUC__) || defined(__clang__)
 #include <dlfcn.h>
 #endif
+#endif
+
 
 #include <iostream>
 

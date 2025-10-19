@@ -2,7 +2,6 @@
 #define PRISM_QT_MODULAR_INTFMODULE_H
 #include "../prism_qt_modular_global.h"
 #include <QObject>
-#include <string>
 
 namespace prism::qt::modular {
 class PRISM_QT_MODULAR_EXPORT intfModule : public QObject

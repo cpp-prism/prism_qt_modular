@@ -5,7 +5,11 @@
 #include <QObject>
 #include <QPluginLoader>
 #include <QVariant>
+#include <QtQml/QQmlApplicationEngine>
+#include <QGuiApplication>
+#include <QQuickWindow>
 #include <iostream>
+#include <prism/container.hpp>
 
 namespace prism::qt::modular {
 
@@ -13,6 +17,7 @@ wrapper::wrapper(std::vector<intfModule*> plugins,std::function<int()> runapp):m
 {
 
 }
+
 
 int wrapper::run()
 {
@@ -37,7 +42,43 @@ int wrapper::run()
     int result = -1;
 
     try{
-        result = m_fuc_runapp();
+        auto qmlengine = prism::Container::get()->resolve_object<QQmlApplicationEngine>();
+        auto app = prism::Container::get()->resolve_object<QGuiApplication>();
+
+        if(qmlengine && app)
+        {
+            static QMetaObject::Connection connection = QObject::connect(
+                qmlengine.get(),
+                &QQmlApplicationEngine::objectCreated,
+                app.get(),
+                [&](QObject* object, const QUrl& url) {
+                    if (url.toString() == QString::fromStdString(prism::qt::modular::wrapper::startupUrl))
+                    {
+                        if (!object)
+                        {
+                            app->exit(-1);
+                        }
+
+                        auto* win = reinterpret_cast<QQuickWindow*>(object);
+                        if (win)
+                        {
+                            QObject::disconnect(connection);
+
+                            std::shared_ptr<QQuickWindow> sp_win(win, [](QQuickWindow* p) { Q_UNUSED(p) });
+                            prism::Container::get()->register_instance(sp_win);
+                        }
+                    }
+                },
+                Qt::QueuedConnection);
+        }
+
+        if(qmlengine)
+            qmlengine->load(QString(prism::qt::modular::wrapper::startupUrl.c_str()));
+
+        if(this->m_fuc_runapp)
+            result = this->m_fuc_runapp();
+        else
+            result = app->exec();
     }
     catch(std::string str)
     {
