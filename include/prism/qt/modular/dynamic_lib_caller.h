@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#if defined(__linux__) && defined(__GNUC__) && (__GNUC__ < 7)
+#if defined(__linux__) && defined(__GNUC__) && (__GNUC__ < 8)
 #include <experimental/filesystem>
 #define filesystem experimental::filesystem
 #else
