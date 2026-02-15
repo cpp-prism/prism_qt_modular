@@ -82,15 +82,15 @@ int wrapper::run()
     }
     catch(std::string str)
     {
-        std::cout << str;
+        qDebug() << str.data();
     }
     catch(const char* msg)
     {
-        std::cout << msg;
+        qDebug() << msg;
     }
     catch(std::exception& ex)
     {
-        std::cout << ex.what();
+        qDebug() << ex.what();
     }
 
     for (auto rit = m_plugins.rbegin(); rit != m_plugins.rend(); ++rit)
