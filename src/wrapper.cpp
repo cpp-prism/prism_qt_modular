@@ -66,6 +66,7 @@ int wrapper::run()
 
                             std::shared_ptr<QQuickWindow> sp_win(win, [](QQuickWindow* p) { Q_UNUSED(p) });
                             prism::Container::get()->register_instance(sp_win);
+                            sp_win->setPersistentGraphics(false);
                         }
                     }
                 },
